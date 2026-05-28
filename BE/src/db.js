@@ -10,7 +10,7 @@ const pool = new Pool({
 
 async function initDb() {
   const sql = fs.readFileSync(
-    path.join(__dirname, '../init.sql'),
+    path.join(__dirname, 'init.sql'),
     'utf8'
   );
 
