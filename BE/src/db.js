@@ -8,4 +8,18 @@ const pool = new Pool({
   port: process.env.POSTGRES_PORT ? Number(process.env.POSTGRES_PORT) : 5432,
 });
 
-module.exports = pool;
+async function initDb() {
+  const sql = fs.readFileSync(
+    path.join(__dirname, '../init.sql'),
+    'utf8'
+  );
+
+  await pool.query(sql);
+
+  console.log('Database initialized');
+}
+
+module.exports = {
+  pool,
+  initDb
+};
