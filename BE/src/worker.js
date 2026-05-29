@@ -51,8 +51,6 @@ async function main() {
 
     const fileSizeKB = Buffer.byteLength(jsonData) / 1024;
 
-    console.log(`JSON file size: ${fileSizeKB.toFixed(2)} KB`);
-
     // =========================
     // Azure Blob Storage
     // =========================
@@ -70,8 +68,6 @@ async function main() {
     // Create container if not exists
     await containerClient.createIfNotExists();
 
-    console.log(`Using container: ${containerName}`);
-
     // =========================
     // Blob upload
     // =========================
@@ -79,8 +75,6 @@ async function main() {
     const blobName = "employees.json";
 
     const blockBlobClient = containerClient.getBlockBlobClient(blobName);
-
-    console.log(`Uploading ${blobName}...`);
 
     const uploadStartTime = Date.now();
 
@@ -92,31 +86,11 @@ async function main() {
 
     const uploadDuration = uploadEndTime - uploadStartTime;
 
-    console.log(`Upload completed in ${uploadDuration} ms`);
-
-    console.log(`${blobName} uploaded successfully`);
-
     // =========================
     // Job summary
     // =========================
 
     const finalDuration = Date.now() - jobStartTime;
-
-    console.log("===================================");
-
-    console.log("JOB SUMMARY");
-
-    console.log(`Employees count: ${employees.length}`);
-
-    console.log(`Query duration: ${queryDuration} ms`);
-
-    console.log(`Upload duration: ${uploadDuration} ms`);
-
-    console.log(`Total duration: ${finalDuration} ms`);
-
-    console.log(`File size: ${fileSizeKB.toFixed(2)} KB`);
-
-    console.log("End time:", new Date().toISOString());
 
     console.log("===================================");
   } catch (err) {
