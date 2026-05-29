@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://stmyappdemo.z22.web.core.windows.net'
+    'https://stmyappdemo.z43.web.core.windows.net'
   ]
 }));
 
